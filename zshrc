@@ -10,7 +10,7 @@ for file in ${(M)config_files:#*/path.zsh}; do
   source "$file"
 done
 
-#source ~/.zsh_plugins.sh
+source ~/.zsh_plugins.sh
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
   source "$file"
