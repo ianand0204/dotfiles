@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+cd "$(dirname "${BASH_SOURCE}")"
+
+link_to() {
+  if [ ! -e "$2" ]
+  then
+    ln -s "$1" "$2"
+    printf "\nLinked $2"
+  fi
+}
+link_dotfile() {
+  link_to $(pwd)/$1 ~/.$1
+}
+
+link_dotfile bash_profile
+link_dotfile zshrc
