@@ -23,6 +23,8 @@ if [ $(date +'%j') != $updated_at ]; then
 else
   compinit -C -i
 fi
+autoload -Uz promptinit
+promptinit
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}; do
