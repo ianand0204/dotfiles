@@ -1,2 +1,2 @@
 zsh
-getantibody/tap/antibody
+coreutils

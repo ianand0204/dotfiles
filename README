@@ -1,3 +1,6 @@
 My dot files
 
 To sync run script
+
+git submodule update --init --recursive
+
