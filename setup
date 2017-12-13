@@ -16,4 +16,4 @@ link_dotfile() {
 
 link_dotfile bash_profile
 link_dotfile zshrc
-link_dotfile zsh_plugins.sh
+#link_dotfile zsh_plugins.sh
