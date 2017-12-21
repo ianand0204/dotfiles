@@ -54,16 +54,16 @@ ZSH_THEME="ys"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
- ZSH_CUSTOM=$ZSHRC/custom
+ZSH_CUSTOM=~/dotfiles/zsh/custom
 
- zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh_reloadA
+  zsh_reload
   brew
   zsh-syntax-highlighting
   ssh-agent
@@ -100,4 +100,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
