@@ -1,0 +1,7 @@
+---
+- name: My Configuration
+  hosts: local
+  roles:
+    - geerlingguy.homebrew
+    - base
+    - dotfiles

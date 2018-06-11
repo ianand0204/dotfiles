@@ -1,0 +1,42 @@
+dotfiles_user_home: "{{ '~' | expanduser }}"
+# Where your dotfiles live. Probably don't need to change this.
+dotfiles_home: "{{dotfiles_user_home}}/dotfiles"
+
+full_name: Ian Anderson
+
+homebrew_taps:
+  - homebrew/cask
+  - homebrew/cask-fonts
+
+homebrew_installed_packages:
+  - curl
+  - wget
+  - highlight
+  - terminal-notifier
+  - htop-osx
+  - httpie
+  - diff-so-fancy
+  - docker-clean
+  - gpg
+  - tldr
+  - m-cli
+  - dockutil
+  - mas
+  - tmux
+  - zsh
+  - coreutils
+  - fzf
+  - ag
+
+homebrew_cask_apps::
+  # Browsers
+  - firefox
+  - google-chrome
+  - appcleaner
+  - virtualbox
+  - docker
+  - visual-studio-code
+
+mac_mas_packages:
+  - 409203825  # Numbers
+

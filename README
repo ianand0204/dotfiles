@@ -1,6 +1,5 @@
-My dot files
+## Setup of macbookpro
 
-To sync run script
+``` ansible-galaxy install -r requirements.yml ```
 
-git submodule update --init --recursive
-
+``` ansible-playbook -i hosts main.yml ```
