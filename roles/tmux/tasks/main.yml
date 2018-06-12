@@ -1,0 +1,14 @@
+---
+- name: Install tmux
+  homebrew: name=tmux state=latest
+  when: ansible_os_family == "Darwin"
+
+- name: Install reattach-to-namespace
+  homebrew: name=reattach-to-user-namespace state=latest
+  when: ansible_os_family == "Darwin"
+
+- name: link tmux.conf
+  file:
+    src: "{{ role_path }}/files/tmux.conf"
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    state: link

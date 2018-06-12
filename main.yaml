@@ -2,6 +2,10 @@
 - name: My Configuration
   hosts: local
   roles:
-    - geerlingguy.homebrew
+#    - geerlingguy.homebrew
     - base
-    - dotfiles
+    - bash
+    - tmux
+    - fzf
+#    - vim
+    - zsh

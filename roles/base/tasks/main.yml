@@ -1,1 +1,108 @@
 ---
+- name: Install base utils
+  homebrew:
+    name: "{{ item }}"
+  with_items:
+    - m-cli
+    - dockutil
+
+- name: Add some taps to homebrew
+  homebrew_tap:
+    name: "{{ item }}"
+  with_items:
+    - homebrew/cask
+    - homebrew/cask-fonts
+    - homebrew/core
+
+- name: Remove all items from dock
+  shell: /usr/local/bin/dockutil --remove all
+
+- name: Set the default dock items
+  shell: "/usr/local/bin/dockutil --add {{ item }} --no-restart"
+  with_items:
+    - /Applications/Safari.app
+    - "\"/Applications/App Store.app\""
+    - "\"/Applications/System Preferences.app\""
+    - /Applications/Messages.app
+    - /Applications/Mail.app
+    - /Applications/Calendar.app
+    - /Applications/iTerm.app
+    - /Applications/Utilities/Console.app
+    - "/Applications --section others"
+    - "~/Downloads --section others"
+
+- name: Reduce the size of the Dock to 30 points
+  shell: defaults write com.apple.dock tilesize -int 30
+
+- name: Show the Dock on the left-hand side
+  shell: /usr/local/bin/m dock position LEFT
+
+- name: Show ~/Library
+  shell: chflags nohidden ~/Library
+
+- name: Show Drives on the Desktop
+  shell: defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+
+- name: Show External Drives on the Desktop
+  shell: defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+
+- name: Show Removable Media on the Desktop
+  shell: defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+- name: Show Hidden Files
+  shell: defaults write com.apple.finder AppleShowAllFiles -bool true
+
+- name: Show File Extensions
+  shell: defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+- name: Show the Status Bar in Finder
+  shell: defaults write com.apple.finder ShowStatusBar -bool true
+
+- name: Show the Path Bar in Finder
+  shell: defaults write com.apple.finder ShowPathbar -bool true
+
+- name: Restart Finder
+  shell: killall Finder
+
+# copy emails as 'foo@example.com', not 'Foo Bar <foo@example.com'
+#defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+#
+# Terminal
+#
+
+# only use uft-8 in Terminal.app
+#defaults write com.apple.terminal StringEncodings -array 4
+#defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+# enable Develop menu and Web Inspector
+#defaults write com.apple.Safari IncludeDevelopMenu -bool true
+#defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+#defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+
+# Hot corners
+# Possible values:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# top left → nothing
+#defaults write com.apple.dock wvous-tl-corner -int 0
+#defaults write com.apple.dock wvous-tl-modifier -int 0
+# top right → nothing
+#defaults write com.apple.dock wvous-tr-corner -int 0
+#defaults write com.apple.dock wvous-tr-modifier -int 0
+# bottom left → desktop
+#defaults write com.apple.dock wvous-bl-corner -int 4
+#defaults write com.apple.dock wvous-bl-modifier -int 0
+# bottom right → mission control
+#defaults write com.apple.dock wvous-br-corner -int 2
+#defaults write com.apple.dock wvous-br-modifier -int 0
+
+# don't create .DS_Store files on network volumes
+#defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
